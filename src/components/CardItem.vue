@@ -13,7 +13,7 @@ export default {
     methods: {
       choose() {
         eventBus.$emit('add-to-operation-box', this.card);
-        // eventBus.$emit('remove-from-card-list')
+        eventBus.$emit('remove-from-card-list', this.card);
       }
     }
 }

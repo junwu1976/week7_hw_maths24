@@ -2,19 +2,34 @@
   <div>
       <h1>Operator List</h1>
       <ul>
-          <li>+</li>
-          <li>-</li>
-          <li>x</li>
-          <li>&divide</li>
-          <li>(</li>
-          <li>)</li>
+          <li v-on:click="choose" :value=selectedOperator>+</li>
+          <li v-on:click="choose" :value=selectedOperator>-</li>
+          <li v-on:click="choose" :value=selectedOperator>x</li>
+          <li v-on:click="choose" :value=selectedOperator>&divide</li>
+          <li v-on:click="choose" :value=selectedOperator>(</li>
+          <li v-on:click="choose" :value=selectedOperator>)</li>
+          <!-- <span v-on:click="choose"><img :src="card.image"></span> -->
       </ul>
   </div>
 </template>
 
 <script>
+import { eventBus } from '../main.js';
+
 export default {
-    name: 'operator-list'
+    name: 'operator-list',
+    data() {
+        return {
+            selectedOperator: null
+    //     selectedCard: null
+        }
+    },
+    methods: {
+      choose() {
+        alert(this.selectedOperator);
+        // eventBus.$emit('add-to-operation-box', this.card);
+      }
+    }
 }
 </script>
 

@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { eventBus } from '../main.js';
 import CardItem from './CardItem.vue';
 
 export default {
@@ -16,6 +17,12 @@ export default {
     props: ['cards'],
     components: {
         "card-item": CardItem
+    },
+    mounted(){
+        eventBus.$on('remove-from-card-list', (card) => {
+            const index = this.cards.indexOf(card);
+            this.cards.splice(index,1);
+        })
     }
 }
 </script>
