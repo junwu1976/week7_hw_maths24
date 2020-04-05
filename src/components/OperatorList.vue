@@ -8,7 +8,6 @@
           <li v-on:click="choose" :value=selectedOperator>&divide</li>
           <li v-on:click="choose" :value=selectedOperator>(</li>
           <li v-on:click="choose" :value=selectedOperator>)</li>
-          <!-- <span v-on:click="choose"><img :src="card.image"></span> -->
       </ul>
   </div>
 </template>
@@ -21,7 +20,6 @@ export default {
     data() {
         return {
             selectedOperator: null
-    //     selectedCard: null
         }
     },
     methods: {

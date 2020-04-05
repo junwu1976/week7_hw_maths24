@@ -23,6 +23,9 @@ export default {
             const index = this.cards.indexOf(card);
             this.cards.splice(index,1);
         })
+        eventBus.$on('return-to-card-list',(card_operator)=>{
+            this.cards.push(card_operator);
+        })
     }
 }
 </script>

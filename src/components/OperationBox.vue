@@ -2,8 +2,7 @@
   <div id="operation_box">
       <ul>
           <li v-for="(card_operator, index) in cards_and_operators" :card_operator="card_operator" :key="index">
-               <img :src="card_operator.image">
-               <!-- <span class="second-column"><button v-on:click="removeFromFavourites(beer)">Remove</button></span> -->
+               <img :src="card_operator.image" v-on:click="remove(card_operator)">
           </li>
       </ul>
   </div>
@@ -19,13 +18,15 @@ export default {
             cards_and_operators: []
         }
     },
+    methods: {
+      remove(card_operator) {
+        eventBus.$emit('return-to-card-list',card_operator);
+        const index = this.cards_and_operators.indexOf(card_operator);
+        this.cards_and_operators.splice(index,1);
+      }
+    },
     mounted(){
         eventBus.$on('add-to-operation-box', (card) => {
-            // if(!this.favourites.includes(beer)){
-            //     this.favourites.push(beer);
-            // }else{
-            //     alert(`${beer.name} has been added to favourites list already!`);
-            // }
             this.cards_and_operators.push(card);       
         })
     }
