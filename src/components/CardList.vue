@@ -24,4 +24,10 @@ export default {
 ul{
     list-style-type: none;
 }
+li {
+    float: left;
+}
+img{
+    width: 100px;
+}
 </style>

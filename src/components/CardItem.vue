@@ -5,18 +5,21 @@
 </template>
 
 <script>
+import { eventBus } from '../main.js';
+
 export default {
     name: 'card-item',
     props: ['card'],
     methods: {
       choose() {
-        eventBus.$emit('choose-card', this.card);
+        eventBus.$emit('add-to-operation-box', this.card);
+        // eventBus.$emit('remove-from-card-list')
       }
     }
 }
 </script>
 
-<style>
+<style lang="css" scoped>
 li {
     float: left;
 }

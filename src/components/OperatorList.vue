@@ -25,6 +25,7 @@ ul{
 li{
     padding: 10px;
     font-size: 100px;
+    float: left;
 }
 li:hover {
     background-color: #bbb;
