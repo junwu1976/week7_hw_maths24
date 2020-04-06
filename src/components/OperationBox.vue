@@ -10,8 +10,9 @@
               </div>
           </li>
       </ul>
-       <div class="result" v-if="match24">Yes,you did it!{{ result }}</div>
-       <div class="result" v-else>Sorry {{ result }}Did not match 24!! </div>
+       <div class="result_match" v-if="remainingCards > 0">Please use all cards</div>
+       <div class="result_match" v-if="match24">Yes,you did it!{{ result }}</div>
+       <div class="result_not_match" v-else>Sorry {{ result }}Did not match 24!! </div>
       <button v-on:click="calculate()">Calculate!</button>
   </div>
 </template>
@@ -21,6 +22,7 @@ import { eventBus } from '../main.js';
 
 export default {
     name: "operation_box",
+    props: ['remainingCards'],
     data() {
         return {
             cards_and_operators: [],
@@ -38,7 +40,6 @@ export default {
           this.cards_and_operators.splice(index,1);
       },
       hasImage(card_operator){
-            // alert(`card or operator?${card_operator.image}`);
             return "no" === card_operator.image ? false:true;
       },
       transform(){
@@ -59,14 +60,11 @@ export default {
           const express_result = this.cards_and_operators.reduce(function (express,card_operator){
               return express + card_operator.value
           },"");
-          alert(express_result);
           this.result = eval(express_result);
-          alert(this.result);
       }
     },
     computed: {
         match24(){
-       //     return Array.isArray(this.ingredient_detail)? true:false;
             return 24 === this.result ? true:false;
         }
     },
@@ -85,11 +83,17 @@ export default {
 #operation_box{
     border: 2px solid #1a681e;
 }
-.result{
+.result_match{
+    float: right;
+    font-size: 30px;
+    color: green;
+}
+.result_not_match{
     float: right;
     font-size: 30px;
     color: red;
 }
+
 ul{
     list-style-type: none;
 }
