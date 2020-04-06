@@ -2,12 +2,12 @@
   <div>
       <h1>Operator List</h1>
       <ul>
-          <li v-on:click="choose" :value=selectedOperator>+</li>
-          <li v-on:click="choose" :value=selectedOperator>-</li>
-          <li v-on:click="choose" :value=selectedOperator>x</li>
-          <li v-on:click="choose" :value=selectedOperator>&divide</li>
-          <li v-on:click="choose" :value=selectedOperator>(</li>
-          <li v-on:click="choose" :value=selectedOperator>)</li>
+          <li v-on:click="choose(0,$event)" :value=selectedOperator>+</li>
+          <li v-on:click="choose(1,$event)" :value=selectedOperator>-</li>
+          <li v-on:click="choose(2,$event)" :value=selectedOperator>*</li>
+          <li v-on:click="choose(3,$event)" :value=selectedOperator>/</li>
+          <li v-on:click="choose(4,$event)" :value=selectedOperator>(</li>
+          <li v-on:click="choose(5,$event)" :value=selectedOperator>)</li>
       </ul>
   </div>
 </template>
@@ -23,9 +23,12 @@ export default {
         }
     },
     methods: {
-      choose() {
-        alert(this.selectedOperator);
-        // eventBus.$emit('add-to-operation-box', this.card);
+      choose(index,event) {
+        this.selectedOperatorIndex = index;
+        const li_value = event.currentTarget.innerText;
+        this.selectedOperator = {"value":li_value,"image":"no"};
+        // alert(this.selectedOperator);
+        eventBus.$emit('add-operator-to-operation-box', this.selectedOperator);
       }
     }
 }
